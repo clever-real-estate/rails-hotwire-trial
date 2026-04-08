@@ -64,3 +64,47 @@ body {
     margin-bottom: 15px;
     border-radius: 4px;
 }
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 20px;
+}
+
+.photo-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden; /* keeps image corners clean */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.photo-image img {
+    width: 100%;
+    display: block;
+}
+
+.photo-body {
+    padding: 12px;
+}
+
+.photographer {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.photo-link {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #3366cc;
+    text-decoration: none;
+}
+
+.photo-link:hover {
+    text-decoration: underline;
+}
+
+.photo-meta {
+    font-size: 0.9rem;
+    color: #555;
+}
