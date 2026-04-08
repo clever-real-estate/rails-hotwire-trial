@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: 
+  external_id: 1
+  width: 100
+  height: 100
+  url: "https://example.com/photo.jpg"
+  photographer: "Test Photographer"
+  photographer_url: "https://example.com/photographer"
+  photographer_id: 1
+  avg_color: "#000000"
+  src_original: "https://example.com/photo.jpg"
+  src_large2x: "https://example.com/photo.jpg"
+  src_large: "https://example.com/photo.jpg"
+  src_medium: "https://example.com/photo.jpg"
+  src_small: "https://example.com/photo.jpg"
+  src_portrait: "https://example.com/photo.jpg"
+  src_landscape: "https://example.com/photo.jpg"
+  src_tiny: "https://example.com/photo.jpg"
+  alt: "Test Photo"
+# column: value
