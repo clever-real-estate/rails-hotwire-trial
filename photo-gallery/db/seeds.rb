@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+require 'csv'
+
+# Create test user
+User.find_or_create_by!(email: "test@example.com") { |u| u.password = "password" }
+
+# Load photos
+csv_path = Rails.root.join("..", "photos.csv")
+CSV.foreach(csv_path, headers: true) do |row|
+  Photo.find_or_create_by!(source_url: row["url"]) do |photo|
+    photo.image_url = row["src.medium"]
+    photo.photographer = row["photographer"]
+    photo.alt = row["alt"]
+  end
+end
