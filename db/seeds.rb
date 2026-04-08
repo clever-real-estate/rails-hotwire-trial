@@ -28,3 +28,5 @@ attributes = rows.map do |row|
 end
 
 Photo.upsert_all(attributes, unique_by: :index_photos_on_external_id) if attributes.any?
+
+User.create!(username: "test_user", password: "password")
