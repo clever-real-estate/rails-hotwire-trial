@@ -1,19 +1,19 @@
 <h1>Sign In</h1>
 
-<%= form_with url: sign_in_path, method: :post do %>
-  <div>
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
+<%= form_with url: sign_in_path, method: :post, local: true do |form| %>
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.email_field :email, required: true %>
   </div>
 
-  <div>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+  <div class="form-group">
+    <%= form.label :password %>
+    <%= form.password_field :password, required: true %>
   </div>
 
-  <%= submit_tag "Sign In" %>
+  <%= form.submit "Sign In", class: "btn" %>
 <% end %>
 
 <% if flash[:alert] %>
-  <p><%= flash[:alert] %></p>
+  <p class="flash"><%= flash[:alert] %></p>
 <% end %>
