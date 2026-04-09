@@ -1,110 +1,116 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    margin: 0;
-}
-
+/* ----------------------------
+   Login Form Styling
+---------------------------- */
 .login-container {
     max-width: 400px;
-    margin: 80px auto;
-    padding: 30px;
-    background: white;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    text-align: center;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-.login-container h1 {
-    margin-bottom: 20px;
+.login-form .form-group {
+    margin-bottom: 16px;
 }
 
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.form-group label {
+.login-form label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 4px;
+    font-weight: 500;
 }
 
-.form-group input {
+.login-form input {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
-    border-radius: 4px;
     border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.btn {
-    padding: 10px 16px;
-    background: #222;
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
+    font-weight: bold;
     cursor: pointer;
 }
 
-.flash {
-    background: #ffdddd;
-    padding: 10px;
-    border: 1px solid #ffaaaa;
-    margin-bottom: 15px;
-    border-radius: 4px;
+.btn-submit:hover {
+    background-color: #0056b3;
 }
 
+/* ----------------------------
+   Photo Grid Styling
+---------------------------- */
 .photo-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    padding: 20px;
+    gap: 16px;
+    padding: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
+/* ----------------------------
+   Photo Card Styling
+---------------------------- */
 .photo-card {
-    background: white;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    overflow: hidden; /* keeps image corners clean */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
 }
 
 .photo-image img {
     width: 100%;
+    max-height: 250px;
+    object-fit: cover;
     display: block;
 }
 
 .photo-body {
-    padding: 12px;
-}
-
-.photographer {
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.photo-link {
-    display: inline-block;
-    margin-bottom: 8px;
-    color: #3366cc;
-    text-decoration: none;
-}
-
-.photo-link:hover {
-    text-decoration: underline;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .photo-meta {
-    font-size: 0.9rem;
-    color: #555;
+    margin-top: auto;
+}
+
+/* Like Button Styling */
+.like-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.like-btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ----------------------------
+   Responsive Adjustments
+---------------------------- */
+@media (max-width: 600px) {
+    .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .photo-image img {
+        max-height: 200px;
+    }
 }
