@@ -1,24 +1,43 @@
-# README
+# Local Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+# 1) Clone and enter the repo
+git clone <your-fork-url>
+cd rails-hotwire-trial
 
-Things you may want to cover:
+# 2) Enter the Rails app (it lives in a subdirectory)
+cd photo-gallery
 
-* Ruby version
+# 3) Use the project Ruby version
+# .ruby-version => ruby-3.3.4
+rvm use 3.3.4
+# (or: rbenv local 3.3.4)
 
-* System dependencies
+# 4) Install dependencies
+bundle install
 
-* Configuration
+# 5) Create + migrate + seed the database
+bin/rails db:setup
+# (equivalent to db:create db:schema:load db:seed)
 
-* Database creation
+# 6) Start the app
+bin/rails server
+```
 
-* Database initialization
+Open [http://localhost:3000](http://localhost:3000)
 
-* How to run the test suite
+## Seeded Login
 
-* Services (job queues, cache servers, search engines, etc.)
+The seed file creates:
 
-* Deployment instructions
+- Email: `test@example.com`
+- Password: `test@example.com`
 
-* ...
+## Notes
+
+- Database is SQLite (`storage/development.sqlite3`), so no external DB setup is required.
+- Photo seed data is loaded from `photos.csv` at the repository root.
+- If you want a clean reset:
+  ```bash
+  bin/rails db:drop db:create db:migrate db:seed
+  ```
