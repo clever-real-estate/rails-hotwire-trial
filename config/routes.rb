@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   root "photos#index"
   get "logout", to: "sessions#destroy", as: :logout
   resource :session, only: [ :new, :create ]
-  resources :photos, only: [ :index ] do
+  resources :photos, only: [ :index ]
+  namespace :photos do
     resource :like, only: [ :create, :destroy ]
   end
 end

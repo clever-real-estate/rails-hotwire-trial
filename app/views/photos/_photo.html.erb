@@ -1,8 +1,13 @@
 <div class="bg-white rounded-lg border border-slate-200 p-4 shadow-sm">
   <%= image_tag photo.src_medium, class: "w-full h-48 object-cover rounded-md mb-4" %>
-  <h2 class="text-lg font-semibold text-slate-900 mb-2"><%= "By #{photo.photographer}" %></h2>
-  <%= link_to photo.url, class: "text-sm text-slate-500 hover:text-slate-700 flex items-center gap-1" do %>
-    <%= image_tag "links.svg", class: "w-4 h-4" %>
-    <span>Source</span>
-  <% end %>
+  <div class="flex items-center justify-between col-span-2">
+    <div>
+      <h3 class="text-lg font-semibold text-slate-900 mb-2"><%= "By #{photo.photographer}" %></h3>
+      <%= link_to photo.url, class: "text-sm text-slate-500 hover:text-slate-700 flex items-center gap-1" do %>
+        <%= image_tag "links.svg", class: "w-4 h-4" %>
+        <span>Source</span>
+      <% end %>
+    </div>
+    <%= render "photos/like_button", photo: photo %>
+  </div>
 </div>
