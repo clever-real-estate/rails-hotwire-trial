@@ -10,8 +10,9 @@
 
 require 'csv'
 
-# Create test user
-User.find_or_create_by!(email: "test@example.com") { |u| u.password = "password" }
+# Create test user i kept getting warning about the password 'password' showing uo in a data breach so
+# I just used the email as a password
+User.find_or_create_by!(email: "test@example.com") { |u| u.password = "test@example.com" }
 
 # Load photos
 csv_path = Rails.root.join("..", "photos.csv")
