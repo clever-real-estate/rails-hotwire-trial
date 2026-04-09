@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.describe PhotoLike, type: :model do
   let(:user) { users(:one) }
   let(:photo) { photos(:one) }
-  let(:photo_like) { photo_likes(:one) }
 
   it "belongs to a user" do
     association = described_class.reflect_on_association(:user)
