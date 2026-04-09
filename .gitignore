@@ -35,6 +35,8 @@ public/assets
 config/master.key
 photo-gallery/tmp/
 photo-gallery/log/
+photo-gallery/storage/*
+!photo-gallery/storage/.keep
 
 # ignore OS / editor
 .DS_Store

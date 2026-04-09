@@ -1,0 +1,25 @@
+<div class="photo-card">
+  <!-- Photo -->
+  <div class="photo-image">
+    <img src="<%= photo.image_url %>" alt="<%= photo.alt %>" title="<%= photo.alt %>"/>
+  </div>
+
+  <!-- Details -->
+  <div class="photo-body">
+    <p class="photographer"><%= photo.photographer %></p>
+    <a href="<%= photo.source_url %>" target="_blank" class="photo-link">
+      <%= image_tag "links.svg", width: 16 %> View Source
+    </a>
+
+    <div class="photo-meta">
+      <% liked = local_assigns.key?(:liked) ? local_assigns[:liked] : current_user.likes.exists?(photo_id: photo.id) %>
+      <%= button_to photo_like_path(photo),
+                    method: liked ? :delete : :post,
+                    class: "like-btn",
+                    data: { turbo_disable_with: liked ? "Unliking…" : "Liking…" } do %>
+        <%= image_tag liked ? "star-fill.svg" : "star-line.svg", width: 18 %>
+        <span><%= photo.likes.size %></span>
+      <% end %>
+    </div>
+  </div>
+</div>
