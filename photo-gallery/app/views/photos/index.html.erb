@@ -1,7 +1,9 @@
+<!-- app/views/photos/index.html.erb -->
+
 <h1>All Photos</h1>
 
-<% @photos.each do |photo| %>
-  <div>
-    <%= render photo %>
-  </div>
-<% end %>
+<div class="photo-grid">
+  <% @photos.each do |photo| %>
+    <%= render partial: "photo", locals: { photo: photo, liked: @liked_photo_ids.include?(photo.id) } %>
+  <% end %>
+</div>
