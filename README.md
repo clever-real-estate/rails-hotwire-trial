@@ -1,24 +1,46 @@
-# README
+# Photo Gallery
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A photo gallery app where authenticated users can browse and like photos, built with Rails 8, Hotwire, and Bootstrap 5.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby 3.3.5
+- Rails 8.0
+- SQLite3
 
-* System dependencies
+## Setup
 
-* Configuration
+```bash
+git clone
+cd photo-gallery
+git checkout photo-gallery-by-khris
+bundle install
+rails db:migrate
+rails db:seed
+```
 
-* Database creation
+## Running the App
 
-* Database initialization
+```bash
+bin/dev
+```
 
-* How to run the test suite
+Visit `http://localhost:3000` and sign in with:
 
-* Services (job queues, cache servers, search engines, etc.)
+| Email                 | Password    |
+| --------------------- | ----------- |
+| user@photogallery.com | password123 |
+| test@photogallery.com | password123 |
 
-* Deployment instructions
+## Running Tests
 
-* ...
+```bash
+bundle exec rspec
+```
+
+## Features
+
+- Devise authentication — app is fully gated behind sign in
+- Like/unlike photos with live updates via Turbo Streams
+- Optimistic UI via Stimulus controller
+- Responsive layout with Bootstrap 5

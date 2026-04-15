@@ -11,12 +11,35 @@
 
 @import "bootstrap";
 
+$brand: #0075eb;
+
 .card-img-top {
 	height: 220px;
 	object-fit: cover;
 	width: 100%;
 }
 
+.navbar {
+	background-color: #fff !important;
+	border-bottom: 2px solid $brand;
+
+	.navbar-text {
+		color: #6c757d;
+	}
+}
+
 .navbar-brand img {
 	height: 28px;
+}
+
+.btn-outline-brand {
+	color: $brand;
+	border-color: $brand;
+	background: transparent;
+
+	&:hover {
+		background-color: $brand;
+		border-color: $brand;
+		color: #fff;
+	}
 }

@@ -1,0 +1,13 @@
+photo_one:
+  title: A beautiful mountain
+  photographer_name: John Doe
+  image_url: https://example.com/photo1.jpg
+  source_url: https://example.com/1
+  likes_count: 0
+
+photo_two:
+  title: Ocean sunset
+  photographer_name: Jane Smith
+  image_url: https://example.com/photo2.jpg
+  source_url: https://example.com/2
+  likes_count: 0
