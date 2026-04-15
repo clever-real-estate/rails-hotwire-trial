@@ -61,3 +61,5 @@ db/*.sqlite3-*
 
 # Ignore Docker overrides (optional)
 docker-compose.override.yml
+/app/assets/builds/*
+!/app/assets/builds/.keep
