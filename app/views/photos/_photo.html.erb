@@ -14,10 +14,7 @@
             View Source
           </span>
         </a>
-        <div class="d-flex align-items-center gap-1">
-          <%= image_tag "star-line.svg", width: 20, height: 20, alt: "like" %>
-          <span class="small text-muted"><%= photo.likes_count %></span>
-        </div>
+        <%= render "photos/like_button", photo: photo, liked: @liked_photo_ids.include?(photo.id) %>
       </div>
     </div>
   </div>

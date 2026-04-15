@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   root "photos#index"
 
-  resources :photos, only: [:index]
+  resources :photos, only: [:index] do
+    resource :like, only: [:create, :destroy], module: :photos
+  end
 end

@@ -25,7 +25,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_211853) do
     t.string "photographer_name"
     t.string "image_url"
     t.string "source_url"
-    t.integer "likes_count"
+    t.integer "likes_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
