@@ -1,0 +1,63 @@
+# Ignore bundler config
+/.bundle
+
+# Ignore logs and temp files
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore storage (ActiveStorage local files)
+/storage/*
+!/storage/.keep
+
+# Ignore database files (SQLite)
+db/*.sqlite3
+db/*.sqlite3-*
+
+# Ignore master key (DO NOT COMMIT)
+/config/master.key
+
+# Ignore credentials
+/config/credentials/*.key
+
+# Ignore environment files
+.env
+.env.*
+
+# Ignore node modules (if using jsbundling)
+/node_modules
+
+# Ignore compiled assets
+/public/assets
+/public/packs
+/public/packs-test
+
+# Ignore bootsnap cache
+/tmp/cache
+
+# Ignore pid files
+/tmp/pids/*
+!/tmp/pids/.keep
+
+# Ignore uploads (if any custom)
+/public/uploads
+
+# Ignore vendor bundle (if used)
+/vendor/bundle
+
+# Ignore coverage reports
+/coverage
+
+# Ignore byebug history
+.byebug_history
+
+# Ignore system files
+.DS_Store
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+
+# Ignore Docker overrides (optional)
+docker-compose.override.yml
