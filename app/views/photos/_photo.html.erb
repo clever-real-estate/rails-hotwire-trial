@@ -1,0 +1,19 @@
+<div id="<%= dom_id(photo) %>" class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+  <img
+    src="<%= photo.image_url %>"
+    alt="<%= photo.title %>"
+    class="h-64 w-full object-cover"
+  >
+
+  <div class="p-4">
+    <p class="text-base font-semibold text-gray-900"><%= photo.photographer %></p>
+
+    <div class="mt-3 flex items-center justify-between">
+      <a href="<%= photo.source_url %>" target="_blank" rel="noopener" class="inline-flex items-center">
+        <%= image_tag "icons/links.svg", width: 18 %>
+      </a>
+
+      <%= render "likes/button", photo: photo %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div id="<%= dom_id(photo, :like_button) %>">
+  <% if photo.liked_by?(current_user) %>
+    <%= button_to photo_like_path(photo),
+        method: :delete,
+        class: "inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100" do %>
+      <%= image_tag "icons/star-fill.svg", width: 20 %>
+      <span><%= photo.likes.count %></span>
+    <% end %>
+  <% else %>
+    <%= button_to photo_like_path(photo),
+        method: :post,
+        class: "inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100" do %>
+      <%= image_tag "icons/star-line.svg", width: 20 %>
+      <span><%= photo.likes.count %></span>
+    <% end %>
+  <% end %>
+</div>
