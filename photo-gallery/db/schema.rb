@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_17_025356) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_17_044533) do
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "photo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_likes_on_photo_id"
+    t.index ["user_id", "photo_id"], name: "index_likes_on_user_id_and_photo_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "photographer"
+    t.string "src_medium"
+    t.string "source_url"
+    t.string "alt"
+    t.integer "likes_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -28,5 +48,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_17_025356) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "likes", "photos"
+  add_foreign_key "likes", "users"
   add_foreign_key "sessions", "users"
 end
