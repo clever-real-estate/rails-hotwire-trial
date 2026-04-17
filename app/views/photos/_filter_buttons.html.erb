@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center justify-content-begin mb-3 gap-2">
+  <div class="btn-group mb-0" role="group" data-controller="photos">
+    <%= link_to filter_photos_photos_path(filter: :all, format: :turbo_stream), class: "btn btn-secondary #{'active' if @photos_view == :all}", aria: { label: "All Photos" }, data: { turbo_stream: true, action: "photos#toggle", photos_target: "button" } do %>
+      <%= image_tag "all-imgs.svg", width: 18, height: 18, alt: "all photos" %>
+    <% end %>
+    <%= link_to filter_photos_photos_path(filter: :liked, format: :turbo_stream), class: "btn btn-secondary #{'active' if @photos_view == :liked}", aria: { label: "Liked Photos" }, data: { turbo_stream: true, action: "photos#toggle", photos_target: "button" } do %>
+      <%= image_tag "star-fill.svg", width: 18, height: 18, alt: "liked" %>
+    <% end %>
+    <%= link_to filter_photos_photos_path(filter: :not_liked, format: :turbo_stream), class: "btn btn-secondary #{'active' if @photos_view == :not_liked}", aria: { label: "Not Liked Photos" }, data: { turbo_stream: true, action: "photos#toggle", photos_target: "button" } do %>
+      <%= image_tag "star-line.svg", width: 18, height: 18, alt: "not liked" %>
+    <% end %>
+  </div>
+</div>
