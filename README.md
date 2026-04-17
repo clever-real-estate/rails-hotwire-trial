@@ -1,115 +1,128 @@
-# Clever's Rails + Hotwire Coding Interview
+# Be Careful, This Plate is Hot(wire) - A Clever App
 
-Welcome to Clever's full-stack coding challenge. You'll build a small but complete web application using **Ruby on Rails** and **Hotwire** (Turbo + Stimulus). The goal is to assess how you think about Rails conventions, server-rendered interactivity, and clean UI without a heavy JavaScript framework.
+Yeah so this is my crack at the Clever coding challenge. Photo gallery with Hotwire/Turbo for real-time filtering and liking - no full page reloads. I know it's a bit overkill but I wanted to flex the Turbo Stream setup properly.
 
----
+## AI DISCLOSURE
 
-## The Challenge
+There were 2 parts I DID use AI on (Claude to be specific).
+- Reformatting this README
+- Diagnosing an issue with my spec/system browser tests...
 
-Build a photo gallery application where authenticated users can browse and "like" photos — all without writing a separate API or client-side SPA.
-
----
-
-## Requirements
-
-### 1. Authentication
-
-- A sign-in page that gates access to the rest of the app
-- Users who are not signed in should be redirected to sign in
-- You may use any approach you prefer: `has_secure_password`, Devise, or a simple session-based system
-- No sign-up flow is needed — seed one or more users directly in `db/seeds.rb`
-
-### 2. Photo Gallery
-
-- Display all 10 photos from the provided `photos.csv` on a single "All Photos" page
-- Seed the photos into your database from the CSV — do not read the CSV at runtime
-- Each photo card should show:
-  - The photo image (use the `src.medium` URL)
-  - The photographer's name
-  - A link icon + the photo's source URL (use `links.svg`)
-  - A like button with the current like count (use `star-fill.svg` and `star-line.svg`)
-
-### 3. Like Functionality (Hotwire)
-
-- Signed-in users can like and unlike any photo
-- **Likes must update without a full page reload** — use Turbo Streams or Turbo Frames
-- Like counts must persist in the database
-- Each user can like a photo only once
-
-### 4. No JavaScript Frameworks
-
-The interactivity must be implemented with **Hotwire** (Turbo + optionally Stimulus). Do not use React, Vue, or any other JS framework.
-
----
-
-## Bonus
-
-- Mobile-responsive layout
-- A Stimulus controller for any client-side behavior (e.g. optimistic UI, toggling state)
-- Meaningful test coverage (RSpec or Minitest)
-
----
-
-## Assets Provided
-
-| File | Purpose |
-|------|---------|
-| `photos.csv` | Photo data — seed this into your database |
-| `logo.svg` | Clever "Ci" logo for the nav/header |
-| `links.svg` | Link icon for each photo card |
-| `star-fill.svg` | Filled star — shown when a photo is liked |
-| `star-line.svg` | Outline star — shown when a photo is not liked |
-
----
-
-## Getting Started
-
-There is no starter application. Create a new Rails app from scratch:
+## Quick Start
 
 ```bash
-rails new photo-gallery --database=sqlite3
-cd photo-gallery
+# Standard Rails setup
+bundle install
+rails db:create db:migrate db:seed
+rails server
 ```
 
-Hotwire (Turbo + Stimulus) ships with Rails 7+ by default. If you're on Rails 6, add:
+Hit up `http://localhost:3000`, sign in, and start liking photos.
+
+Or if you're into Docker (who isn't):
+
+```bash
+docker compose build
+docker compose run web rails db:create db:migrate db:seed
+docker compose up
+```
+
+## What's in Here
+
+- **Photo Gallery** — Grid view of photos (responsive, used bootstrap for speed)
+- **Filtering** — All Photos / Liked / Not Liked (via Turbo Stream, no reloads)
+- **Like Toggle** — Click star to like/unlike, updates instantly
+- **User Auth** — Devise handles the boring auth stuff
+
+Pretty straightforward. Users filter photos and like what they want. The whole thing updates in real-time via Turbo Streams.
+
+## Stack
+
+- Rails 8.1 (obviously)
+- Hotwire/Turbo (came along for the ride)
+- Bootstrap 5 + Tailwind (...sigh)
+- SQLite
+- Devise (user auth)
+- RSpec (tested everything)
+
+## Tests
+
+I went full BDD on this. 24 test scenarios covering:
+- Photo filtering workflows
+- Like/unlike interactions  
+- Turbo Stream responses
+- Session state management
+- All the edge cases I could think of
+
+```bash
+# Run 'em all
+bundle exec rspec
+
+# Just the stuff users see
+bundle exec rspec spec/system
+
+# API/Turbo Stream tests
+bundle exec rspec spec/integration
+
+# Controller logic
+bundle exec rspec spec/controllers
+```
+## How It Actually Works
+
+### Photos Controller
+- `#index` — Loads all photos, sets filter to `:all`
+- `#filter_photos` — Handles filtering (all/liked/not_liked), returns turbo_stream
+
+### Likes Controller (nested under Photos::)
+- `#create` — Like a photo, respects current filter, returns updated gallery
+- `#destroy` — Unlike a photo, same deal
+
+### The Turbo Magic
+Everything goes through `filter_photos.turbo_stream.erb` which replaces the entire `photo_gallery` div with filtered photos. Session stores which filter you're on, so when you like/unlike, it re-fetches with that filter applied. I would've liked to make this a bit cleaner but given time constraints and other things I wanted to showcase, this is the result. I still think it's DRY in nature.
+
+## Routes
 
 ```ruby
-# Gemfile
-gem "hotwire-rails"
+GET  /photos                              # Index
+GET  /photos/filter_photos?filter=:type   # Filter (turbo_stream)
+POST /photos/:photo_id/like               # Like (turbo_stream)
+DELETE /photos/:photo_id/like             # Unlike (turbo_stream)
 ```
 
----
+## Notable Design Decisions
 
-## What We're Looking For
+1. **Single Turbo Stream Template** — All filtering and like/unlike use `filter_photos.turbo_stream.erb`. Keeps things DRY.
 
-| Area | What to demonstrate |
-|------|-------------------|
-| **Rails conventions** | Resourceful routing, skinny controllers, proper use of models |
-| **Hotwire / Turbo** | Turbo Streams or Frames for the like feature — not polling, not custom fetch |
-| **Database design** | Appropriate models, associations, and constraints |
-| **HTML/CSS** | Clean, readable markup; reasonable styling without a heavy framework |
-| **Code quality** | Clear naming, no unnecessary complexity, code you'd be comfortable reviewing |
+2. **Session-Based Filter State** — When you like/unlike, the server knows which filter you're on and returns the appropriate photos. No weird state mismatches.
 
----
+3. **Minimal JS** — Stimulus just handles the view controller stuff. Turbo does the heavy lifting.
 
-## Time
+4. **Factory Bot for Tests** — Way cleaner than fixtures. Easy to create test data with relationships.
 
-Most candidates complete the core requirements in 2–4 hours. If you run out of time, leave notes in your README describing what you'd do next rather than rushing.
+## Gotchas / Things I Ran Into
 
----
+- **Turbo Stream Partial Paths** — When rendering from a nested controller (Photos::LikesController), Rails was looking for partials in the wrong directory. Solved by explicitly specifying the path in the loop.
+- **Filter Buttons** — Had to make them links instead of buttons to work properly with Turbo. `link_to` with turbo_stream format param.
+- **Like Count Updates** — Need to update the full gallery, not just the like button, because likes affect filtering. That's why we use the full turbo_stream template.
+- **Tests** - I'm bullish on BDD so I think I spent as much time writing tests as I did writing the app. That said, I should note that I was able to pluck some existing test code here and there from current projects to speed that along.
 
-## Submission
+## Stuff I Could Add But Didn't
 
-1. Fork this repository
-2. Build your application in the fork (the Rails app can live at the repo root or in a subdirectory)
-3. Include setup instructions in your README so we can run it locally
-4. Open a pull request back to this repository
-5. Add the following reviewers: `@imjamescrain`, `@jlien`, `@nickcluc`, `@rymccue`
+- Photo upload (would need Active Storage)
+- Pagination (not needed for challenge)
+- Admin panel to manage photos
+  - Would've also been cool to link logged in users with photos they owned
+- Real-time like count from other users
+- Search/tagging
+  - This would've been a cool thing to add for the challenge
+- Comments/Ratings
 
-Questions? Reach out to nick.clucas@movewithclever.com
+But yeah, for the challenge requirements, this is solid.
 
----
+## Stats About This Challenge
 
-## Design Reference
-
-The UI doesn't need to be pixel-perfect, but aim for something clean and usable. A photo card should convey the image, photographer credit, source link, and like action clearly. Use the Clever brand color `#0075EB` where appropriate.
+- My total time for the challenge was 4 hours 26 minutes and some change
+  - Without the diagnoses of the spec/system tests it was 3 hours and 41 minutes
+- I DID use past code, especially for test setup to speed up the process (and prevent re-inventing the wheel). Also the `docker-compose.yml` file is largely a recycle of my past projects in rails
+- I DID use AI as denoted above in the disclosure (limited capacity, did not use it on functionality)
+- I DID debate on hiding an easter egg somewhere for the reviewers to find but ran out of time...it would've been a tiny t-rex in ascii, though
