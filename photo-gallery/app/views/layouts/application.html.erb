@@ -23,6 +23,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="site-header">
+      <%= link_to root_path, class: "brand" do %>
+        <%= image_tag "logo.svg", alt: "Clever", class: "brand-logo" %>
+      <% end %>
+      <% if authenticated? %>
+        <span class="signed-in-as"><%= Current.user.email_address %></span>
+        <%= button_to "Sign out", session_path, method: :delete, class: "sign-out" %>
+      <% end %>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

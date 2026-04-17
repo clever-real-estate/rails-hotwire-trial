@@ -1,10 +1,191 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+:root {
+  --brand: #0075EB;
+  --text: #111;
+  --muted: #555;
+  --border: #e5e5e5;
+  --bg: #fff;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a { color: var(--brand); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand-logo { height: 28px; width: auto; display: block; }
+.signed-in-as { color: var(--muted); font-size: 0.875rem; }
+
+.sign-out, .sign-out button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.875rem;
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+}
+.sign-out:hover { border-color: var(--brand); color: var(--brand); }
+
+main { padding: 1rem; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.photo-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.photo-card .photo {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.photographer {
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.photo-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.source-link,
+.star-placeholder,
+.star-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+}
+
+.source-link img,
+.star-placeholder img,
+.star-btn img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.source-link:hover { background: #f4f4f4; }
+
+.star-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+.star-btn:hover { background: #f4f4f4; }
+.star-btn.liked { color: var(--brand); }
+
+.photo-actions form,
+.site-header form { display: inline; margin: 0; }
+
+.auth-card {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.auth-card h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+}
+
+.auth-form .field {
+  margin-bottom: 1rem;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(0, 117, 235, 0.15);
+}
+
+.auth-form .submit {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.auth-form .submit:hover {
+  background: #005bbb;
+}
+
+.flash {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+.flash-alert { background: #fee; color: #900; }
