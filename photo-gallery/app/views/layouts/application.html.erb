@@ -22,7 +22,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-controller="modal">
     <header class="site-header">
       <%= link_to root_path, class: "brand" do %>
         <%= image_tag "logo.svg", alt: "Clever", class: "brand-logo" %>
@@ -36,5 +36,10 @@
     <main>
       <%= yield %>
     </main>
+
+    <dialog data-modal-target="dialog" data-action="click->modal#closeOnBackdrop">
+      <button type="button" class="modal-close" data-action="click->modal#close" aria-label="Close">&times;</button>
+      <img data-modal-target="image" alt="">
+    </dialog>
   </body>
 </html>

@@ -1,5 +1,10 @@
 <article class="photo-card">
-  <%= image_tag photo.src_medium, alt: photo.alt, class: "photo" %>
+  <button type="button" class="photo-open"
+          data-action="click->modal#open"
+          data-modal-src="<%= photo.src_medium %>"
+          data-modal-alt="<%= photo.alt %>">
+    <%= image_tag photo.src_medium, alt: photo.alt, class: "photo" %>
+  </button>
   <footer class="photo-meta">
     <span class="photographer"><%= photo.photographer %></span>
     <div class="photo-actions">

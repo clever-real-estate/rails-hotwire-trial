@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Liking photos", type: :system, js: true do
+RSpec.describe "Photo gallery", type: :system, js: true do
   it "toggles a like in place without a full page reload" do
     user  = create(:user)
     photo = create(:photo)
@@ -20,5 +20,17 @@ RSpec.describe "Liking photos", type: :system, js: true do
 
     expect(page.evaluate_script("window.__reloaded")).to eq(false)
     expect(photo.reload.likes_count).to eq(1)
+  end
+
+  it "opens a modal when a photo is clicked" do
+    user = create(:user)
+    create(:photo)
+
+    sign_in_as(user)
+    visit photos_path
+
+    find(".photo-open", match: :first).click
+
+    expect(page).to have_css("dialog[open]")
   end
 end
