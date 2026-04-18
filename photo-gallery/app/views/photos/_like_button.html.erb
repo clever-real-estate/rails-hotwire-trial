@@ -1,0 +1,13 @@
+<%= tag.span id: dom_id(photo, :like_button), class: "like-wrapper" do %>
+  <% if liked %>
+    <%= button_to photo_like_path(photo), method: :delete, class: "star-btn liked", "aria-label": "Unlike" do %>
+      <%= image_tag "star-fill.svg", alt: "" %>
+      <span class="count"><%= photo.likes_count %></span>
+    <% end %>
+  <% else %>
+    <%= button_to photo_like_path(photo), method: :post, class: "star-btn", "aria-label": "Like" do %>
+      <%= image_tag "star-line.svg", alt: "" %>
+      <span class="count"><%= photo.likes_count %></span>
+    <% end %>
+  <% end %>
+<% end %>

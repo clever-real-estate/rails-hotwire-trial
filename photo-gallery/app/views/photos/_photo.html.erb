@@ -6,10 +6,7 @@
       <%= link_to photo.source_url, target: "_blank", rel: "noopener", class: "source-link", "aria-label": "View source on Pexels" do %>
         <%= image_tag "links.svg", alt: "" %>
       <% end %>
-      <span class="star-placeholder">
-        <%= image_tag "star-line.svg", alt: "" %>
-        <%= photo.likes_count %>
-      </span>
+      <%= render "photos/like_button", photo: photo, liked: @liked_ids.include?(photo.id) %>
     </div>
   </footer>
 </article>
