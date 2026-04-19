@@ -1,5 +1,6 @@
 <article class="photo-card">
   <button type="button" class="photo-open"
+          aria-label="Open photo by <%= photo.photographer %>"
           data-action="click->modal#open"
           data-modal-src="<%= photo.src_medium %>"
           data-modal-alt="<%= photo.alt %>">

@@ -1,11 +1,11 @@
 module AuthHelpers
-  def sign_in_as(user, password: "clever123")
+  def sign_in_as(user, password: TEST_PASSWORD)
     post session_path, params: { email_address: user.email_address, password: password }
   end
 end
 
 module SystemAuthHelpers
-  def sign_in_as(user, password: "clever123")
+  def sign_in_as(user, password: TEST_PASSWORD)
     visit new_session_path
     fill_in "Email address", with: user.email_address
     fill_in "Password", with: password

@@ -1,7 +1,7 @@
 require "capybara/cuprite"
 
 Capybara.register_driver(:cuprite) do |app|
-  Capybara::Cuprite::Driver.new(app, window_size: [1200, 800], process_timeout: 10)
+  Capybara::Cuprite::Driver.new(app, window_size: [ 1200, 800 ], process_timeout: 10)
 end
 
 Capybara.javascript_driver = :cuprite

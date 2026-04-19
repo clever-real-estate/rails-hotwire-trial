@@ -7,7 +7,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    Current.user.likes.where(photo: @photo).destroy_all
+    Current.user.likes.find_by(photo: @photo)&.destroy
     render_toggle(liked: false)
   end
 
