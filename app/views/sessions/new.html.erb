@@ -1,0 +1,16 @@
+<div class="auth-container">
+  <%= image_tag "logo.svg", alt: "Clever", class: "auth-logo" %>
+  <h1 class="auth-title">Sign In</h1>
+
+  <%= form_with url: login_path do |f| %>
+    <div class="field">
+      <%= f.label :email, "Email" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "you@example.com" %>
+    </div>
+    <div class="field">
+      <%= f.label :password, "Password" %>
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "••••••••" %>
+    </div>
+    <%= f.submit "Sign In", class: "btn btn--primary btn--full" %>
+  <% end %>
+</div>
