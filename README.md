@@ -113,37 +113,3 @@ Questions? Reach out to nick.clucas@movewithclever.com
 ## Design Reference
 
 The UI doesn't need to be pixel-perfect, but aim for something clean and usable. A photo card should convey the image, photographer credit, source link, and like action clearly. Use the Clever brand color `#0075EB` where appropriate.
-
----
-
-## My Submission
-
-The Rails app lives in the `photo-gallery/` subdirectory.
-
-### Running Locally
-
-```bash
-cd photo-gallery
-bin/setup
-bin/rails db:seed
-bin/rails server
-```
-
-Visit http://localhost:3000 and sign in with any of the seeded demo users:
-
-- `demo1@example.com`
-- `demo2@example.com`
-- `demo3@example.com`
-
-Password for all: `clever123`
-
-Three users are seeded so you can sign in from multiple browsers and watch the like count update as different users like the same photo.
-
-### Running Tests
-
-```bash
-cd photo-gallery
-bundle exec rspec
-```
-
-System specs use [Cuprite](https://github.com/rubycdp/cuprite) (headless Chrome via CDP), so a local Chrome or Chromium install is required.

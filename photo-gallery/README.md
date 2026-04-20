@@ -1,24 +1,29 @@
-# README
+# Photo Gallery
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails 8 + Hotwire submission for Clever's coding interview.
 
-Things you may want to cover:
+## Running Locally
 
-* Ruby version
+```bash
+bin/setup
+bin/rails db:seed
+bin/rails server
+```
 
-* System dependencies
+Visit http://localhost:3000 and sign in with any of the seeded demo users:
 
-* Configuration
+- `demo1@example.com`
+- `demo2@example.com`
+- `demo3@example.com`
 
-* Database creation
+Password for all: `clever123`
 
-* Database initialization
+Three users are seeded so you can sign in from multiple browsers and watch the like count update as different users like the same photo.
 
-* How to run the test suite
+## Running Tests
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+bundle exec rspec
+```
 
-* Deployment instructions
-
-* ...
+System specs use [Cuprite](https://github.com/rubycdp/cuprite) (headless Chrome via CDP), so a local Chrome or Chromium install is required.
