@@ -380,7 +380,7 @@ body {
     padding: 1rem;
   }
   .gallery-grid {
-    gap: 1rem;
+    column-gap: 1rem;
   }
   .auth-container {
     margin: 2rem 1rem;

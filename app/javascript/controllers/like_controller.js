@@ -5,19 +5,23 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["count"]
 
-  optimisticToggle(event) {
-    const btn       = this.element.querySelector(".like-btn")
-    const countEl   = this.countTarget
-    const isLiked   = btn.classList.contains("like-btn--active")
-    const delta     = isLiked ? -1 : 1
+  connect() {
+    this.boundHandleResponse = this.handleResponse.bind(this)
+  }
 
-    // Optimistically update count and visual state
+  optimisticToggle(event) {
+    const btn     = this.element.querySelector(".like-btn")
+    const countEl = this.countTarget
+    const isLiked = btn.classList.contains("like-btn--active")
+    const delta   = isLiked ? -1 : 1
+
     countEl.textContent = Math.max(0, parseInt(countEl.textContent, 10) + delta)
     btn.classList.toggle("like-btn--active", !isLiked)
     btn.setAttribute("aria-pressed", String(!isLiked))
 
-    // Listen for failure so we can revert
-    this.element.addEventListener("turbo:submit-end", this.handleResponse.bind(this), { once: true })
+    // Remove before adding to prevent listener accumulation on rapid clicks
+    this.element.removeEventListener("turbo:submit-end", this.boundHandleResponse)
+    this.element.addEventListener("turbo:submit-end", this.boundHandleResponse, { once: true })
   }
 
   handleResponse(event) {
