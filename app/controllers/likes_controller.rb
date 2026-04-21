@@ -3,23 +3,18 @@ class LikesController < ApplicationController
   before_action :set_like,  only: [:destroy]
 
   def create
-    @like = current_user.likes.build(photo: @photo)
-    if @like.save
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to photos_path }
-      end
-    else
-      respond_to do |format|
-        format.turbo_stream { head :unprocessable_entity }
-        format.html { redirect_to photos_path }
-      end
+    current_user.likes.find_or_create_by(photo: @photo)
+    @photo.likes.reload
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to photos_path }
     end
   end
 
   def destroy
     @photo = @like.photo
     @like.destroy
+    @photo.likes.reload
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to photos_path }

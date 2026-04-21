@@ -7,23 +7,34 @@
    Variables & Reset
    ============================================================ */
 :root {
-  --brand:      #0075EB;
+  --brand: #0075eb;
   --brand-dark: #005cbf;
-  --text:       #111827;
-  --muted:      #6b7280;
-  --surface:    #ffffff;
-  --bg:         #f3f4f6;
-  --border:     #e5e7eb;
-  --radius:     0.5rem;
-  --shadow-sm:  0 1px 2px rgba(0,0,0,0.05);
-  --shadow:     0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md:  0 4px 12px rgba(0,0,0,0.10);
+  --text: #111827;
+  --muted: #6b7280;
+  --surface: #ffffff;
+  --bg: #f3f4f6;
+  --border: #e5e7eb;
+  --radius: 0.5rem;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   color: var(--text);
   background: var(--bg);
   min-height: 100vh;
@@ -45,8 +56,15 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.site-header__logo-link { display: flex; align-items: center; text-decoration: none; }
-.site-header__logo      { height: 2rem; display: block; }
+.site-header__logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.site-header__logo {
+  height: 2rem;
+  display: block;
+}
 
 .site-header__user {
   display: flex;
@@ -73,23 +91,34 @@ body {
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
 }
 
 .btn--primary {
   background: var(--brand);
   color: #fff;
 }
-.btn--primary:hover { background: var(--brand-dark); }
+.btn--primary:hover {
+  background: var(--brand-dark);
+}
 
 .btn--ghost {
   background: none;
   border: 1px solid var(--border);
   color: var(--text);
 }
-.btn--ghost:hover { background: var(--bg); }
+.btn--ghost:hover {
+  background: var(--bg);
+}
 
-.btn--full { width: 100%; padding: 0.75rem; font-size: 1rem; }
+.btn--full {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
 
 /* ============================================================
    Flash Messages
@@ -99,8 +128,16 @@ body {
   font-size: 0.875rem;
   font-weight: 500;
 }
-.flash--notice { background: #ecfdf5; color: #065f46; border-bottom: 1px solid #a7f3d0; }
-.flash--alert  { background: #fef2f2; color: #991b1b; border-bottom: 1px solid #fecaca; }
+.flash--notice {
+  background: #ecfdf5;
+  color: #065f46;
+  border-bottom: 1px solid #a7f3d0;
+}
+.flash--alert {
+  background: #fef2f2;
+  color: #991b1b;
+  border-bottom: 1px solid #fecaca;
+}
 
 /* ============================================================
    Auth Page
@@ -149,7 +186,9 @@ body {
   font-size: 1rem;
   color: var(--text);
   background: var(--surface);
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
 }
 
 .field input:focus {
@@ -199,7 +238,9 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .photo-card:hover {
@@ -208,6 +249,7 @@ body {
 }
 
 .photo-card__image-wrapper {
+  display: block;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--bg);
@@ -257,7 +299,9 @@ body {
   opacity: 0.6;
   transition: opacity 0.1s;
 }
-.photo-card__source-link:hover { opacity: 1; }
+.photo-card__source-link:hover {
+  opacity: 1;
+}
 
 /* ============================================================
    Like Button
@@ -283,7 +327,9 @@ body {
   font-weight: 500;
   padding: 0.3rem 0.5rem;
   border-radius: var(--radius);
-  transition: color 0.1s, background 0.1s;
+  transition:
+    color 0.1s,
+    background 0.1s;
   line-height: 1;
 }
 
@@ -320,8 +366,17 @@ body {
    Responsive tweaks
    ============================================================ */
 @media (max-width: 480px) {
-  .site-header { padding: 0.625rem 1rem; }
-  .main-content { padding: 1rem; }
-  .gallery-grid { gap: 1rem; }
-  .auth-container { margin: 2rem 1rem; padding: 1.5rem; }
+  .site-header {
+    padding: 0.625rem 1rem;
+  }
+  .main-content {
+    padding: 1rem;
+  }
+  .gallery-grid {
+    gap: 1rem;
+  }
+  .auth-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
 }
