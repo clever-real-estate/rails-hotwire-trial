@@ -71,7 +71,7 @@ Likes use **Turbo Frames** — clicking the star button submits a form that retu
 
 ## What I'd Do Next
 
-- Add a Stimulus controller for optimistic UI on the like button (toggle the star immediately, roll back on error)
-- Pagination or infinite scroll if the photo set grows
+- Pagination if the photo set grows, and a `counter_cache` column on photos to avoid N+1 count queries
 - System tests with Capybara for full end-to-end coverage of the Turbo Frame interactions
-- Rate limiting on the like endpoint
+- Rate limiting on login attempts and the like endpoint
+- Normalize emails (downcase/strip) before saving
