@@ -1,0 +1,32 @@
+<div class="photo-card" id="<%= dom_id(photo) %>">
+  <div class="photo-image">
+    <%= image_tag photo.image_url, alt: photo.alt, loading: "lazy" %>
+  </div>
+
+  <div class="photo-info">
+    <span class="photographer"><%= photo.photographer %></span>
+
+    <div class="photo-actions">
+      <%= link_to photo.url, target: "_blank", rel: "noopener", class: "icon-link" do %>
+        <%= image_tag "links.svg", alt: "Source", class: "icon" %>
+      <% end %>
+
+      <% liked = current_user.likes.exists?(photo: photo) %>
+      <% like_count = photo.likes.count %>
+
+      <%= turbo_frame_tag dom_id(photo, :like) do %>
+        <% if liked %>
+          <%= button_to photo_like_path(photo), method: :delete, class: "like-btn liked" do %>
+            <%= image_tag "star-fill.svg", alt: "Unlike", class: "icon star" %>
+            <span><%= like_count %></span>
+          <% end %>
+        <% else %>
+          <%= button_to photo_like_path(photo), method: :post, class: "like-btn" do %>
+            <%= image_tag "star-line.svg", alt: "Like", class: "icon star" %>
+            <span><%= like_count %></span>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
+  resources :photos, only: [ :index ] do
+    resource :like, only: [ :create, :destroy ]
+  end
+
   # Defines the root path route ("/")
   root "photos#index"
 end
