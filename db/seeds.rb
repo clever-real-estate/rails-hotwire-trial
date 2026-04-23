@@ -1,9 +1,21 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require "csv"
+
+# Seed users
+User.find_or_create_by!(email: "user@example.com") do |user|
+  user.password = "password"
+  user.password_confirmation = "password"
+end
+
+# Seed photos from CSV
+csv_path = Rails.root.join("db", "photos.csv")
+CSV.foreach(csv_path, headers: true) do |row|
+  Photo.find_or_create_by!(pexels_id: row["id"].to_i) do |photo|
+    photo.url = row["url"]
+    photo.photographer = row["photographer"]
+    photo.photographer_url = row["photographer_url"]
+    photo.image_url = row["src.medium"]
+    photo.alt = row["alt"]
+  end
+end
+
+puts "Seeded #{User.count} user(s) and #{Photo.count} photo(s)."
