@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
+    # TODO: Improvement opportunity to cache user lookup in the request store or use
+    # Rails.cache to avoid repeated DB hits if current_user is called multiple times.
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
   helper_method :current_user

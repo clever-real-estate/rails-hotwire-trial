@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path, notice: "Signed in successfully. Yay!"
     else
+      # TODO: Add rate limiting on failed login attempts to mitigate brute-force attacks
       flash.now[:alert] = "Invalid email or password. Boo!"
       render :new, status: :unprocessable_entity
     end
