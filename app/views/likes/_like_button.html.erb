@@ -1,0 +1,16 @@
+<%= turbo_frame_tag dom_id(photo, :like) do %>
+  <% liked = current_user.likes.exists?(photo: photo) %>
+  <% like_count = photo.likes.count %>
+
+  <% if liked %>
+    <%= button_to photo_like_path(photo), method: :delete, class: "like-btn liked" do %>
+      <%= image_tag "star-fill.svg", alt: "Unlike", class: "icon star" %>
+      <span><%= like_count %></span>
+    <% end %>
+  <% else %>
+    <%= button_to photo_like_path(photo), method: :post, class: "like-btn" do %>
+      <%= image_tag "star-line.svg", alt: "Like", class: "icon star" %>
+      <span><%= like_count %></span>
+    <% end %>
+  <% end %>
+<% end %>
