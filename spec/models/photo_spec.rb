@@ -9,7 +9,7 @@ RSpec.describe Photo, type: :model do
 
   # Requirement 3: "Like counts must persist in the database"
   it "tracks its like count through the likes association" do
-    photo = Photo.create!(pexels_id: 99, url: "http://example.com", photographer: "Test",
+    photo = Photo.create!(external_id: 99, url: "http://example.com", photographer: "Test",
       photographer_url: "http://example.com", image_url: "http://example.com/img.jpg", alt: "test")
     user = User.create!(email: "liker@example.com", password: "password")
 

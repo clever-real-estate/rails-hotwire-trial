@@ -21,7 +21,7 @@ RSpec.describe "Authentication", type: :request do
     end
 
     it "redirects unauthenticated users away from photo routes" do
-      photo = Photo.create!(pexels_id: 1, url: "http://example.com", photographer: "Test",
+      photo = Photo.create!(external_id: 1, url: "http://example.com", photographer: "Test",
         photographer_url: "http://example.com", image_url: "http://example.com/img.jpg", alt: "test")
       post photo_like_path(photo)
       expect(response).to redirect_to(login_path)

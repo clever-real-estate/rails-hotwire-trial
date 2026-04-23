@@ -9,7 +9,7 @@ end
 # Seed photos from CSV
 csv_path = Rails.root.join("db", "photos.csv")
 CSV.foreach(csv_path, headers: true) do |row|
-  Photo.find_or_create_by!(pexels_id: row["id"].to_i) do |photo|
+  Photo.find_or_create_by!(external_id: row["id"].to_i, external_source: "pexels") do |photo|
     photo.url = row["url"]
     photo.photographer = row["photographer"]
     photo.photographer_url = row["photographer_url"]

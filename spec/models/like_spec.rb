@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Like, type: :model do
   let(:user) { User.create!(email: "test@example.com", password: "password") }
   let(:photo) do
-    Photo.create!(pexels_id: 1, url: "http://example.com", photographer: "Test",
+    Photo.create!(external_id: 1, url: "http://example.com", photographer: "Test",
       photographer_url: "http://example.com", image_url: "http://example.com/img.jpg", alt: "test")
   end
 

@@ -12,7 +12,7 @@ require "rails_helper"
 RSpec.describe "Photo Gallery & Likes", type: :request do
   let!(:user) { User.create!(email: "test@example.com", password: "password") }
   let!(:photo) do
-    Photo.create!(pexels_id: 1, url: "https://www.pexels.com/photo/test-1/",
+    Photo.create!(external_id: 1, url: "https://www.pexels.com/photo/test-1/",
       photographer: "Jane Doe", photographer_url: "https://www.pexels.com/@janedoe",
       image_url: "https://images.pexels.com/photos/1/test.jpeg?auto=compress&cs=tinysrgb&h=350",
       alt: "A test photo")
@@ -24,7 +24,7 @@ RSpec.describe "Photo Gallery & Likes", type: :request do
 
   describe "All Photos page" do
     it "displays all photos on a single page" do
-      second_photo = Photo.create!(pexels_id: 2, url: "https://www.pexels.com/photo/test-2/",
+      second_photo = Photo.create!(external_id: 2, url: "https://www.pexels.com/photo/test-2/",
         photographer: "John Smith", photographer_url: "https://www.pexels.com/@johnsmith",
         image_url: "https://images.pexels.com/photos/2/test.jpeg", alt: "Another photo")
 

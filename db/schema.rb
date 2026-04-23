@@ -24,8 +24,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_042246) do
   create_table "photos", force: :cascade do |t|
     t.string "alt"
     t.datetime "created_at", null: false
+    t.integer "external_id"
+    t.string "external_source"
     t.string "image_url"
-    t.integer "pexels_id"
     t.string "photographer"
     t.string "photographer_url"
     t.datetime "updated_at", null: false
