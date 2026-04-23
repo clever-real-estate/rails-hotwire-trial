@@ -1,0 +1,17 @@
+<div class="photo-card" id="<%= dom_id(photo) %>">
+  <div class="photo-image">
+    <%= image_tag photo.image_url, alt: photo.alt, loading: "lazy" %>
+  </div>
+
+  <div class="photo-info">
+    <span class="photographer"><%= photo.photographer %></span>
+
+    <div class="photo-actions">
+      <%= link_to photo.url, target: "_blank", rel: "noopener", class: "icon-link" do %>
+        <%= image_tag "links.svg", alt: "Source", class: "icon" %>
+      <% end %>
+
+      <%= render "likes/like_button", photo: photo %>
+    </div>
+  </div>
+</div>

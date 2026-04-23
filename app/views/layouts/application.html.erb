@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Photo Gallery" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="navbar-content">
+        <%= link_to root_path, class: "logo" do %>
+          <%= image_tag "logo.svg", alt: "Clever", height: 36 %>
+        <% end %>
+        <% if current_user %>
+          <nav class="nav-links">
+            <span class="nav-user"><%= current_user.email %></span>
+            <%= button_to "Sign Out", logout_path, method: :delete, class: "btn btn-sm" %>
+          </nav>
+        <% end %>
+      </div>
+    </header>
+
+    <main class="container">
+      <% if flash[:notice] %>
+        <p class="notice"><%= flash[:notice] %></p>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

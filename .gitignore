@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+
+# Ruby / Rails
+/.bundle
+/log/*
+/tmp/*
+/storage/*
+!/log/.keep
+!/tmp/.keep
+!/storage/.keep
+
+/db/*.sqlite3
+/db/*.sqlite3-*
+
+# Ignore Propshaft output
+/public/assets
+
+# Ignore master key for decrypting credentials
+/config/master.key
+
+# Ignore node_modules if present
+/node_modules

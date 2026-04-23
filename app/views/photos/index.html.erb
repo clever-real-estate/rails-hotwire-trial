@@ -1,0 +1,7 @@
+<h1>All Photos</h1>
+
+<div class="photo-grid">
+  <% @photos.each do |photo| %>
+    <%= render "photos/photo_card", photo: photo %>
+  <% end %>
+</div>
