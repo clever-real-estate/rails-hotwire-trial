@@ -1,115 +1,54 @@
-# Clever's Rails + Hotwire Coding Interview
+# README
 
-Welcome to Clever's full-stack coding challenge. You'll build a small but complete web application using **Ruby on Rails** and **Hotwire** (Turbo + Stimulus). The goal is to assess how you think about Rails conventions, server-rendered interactivity, and clean UI without a heavy JavaScript framework.
+Photo Gallery
 
----
+* System dependencies
 
-## The Challenge
+1) Devise (gem "devise")
+2) CSV (gem 'csv')
 
-Build a photo gallery application where authenticated users can browse and "like" photos — all without writing a separate API or client-side SPA.
+* Running locally
 
----
+1) Install Ruby (see .ruby-version) using RVM, rbenv, asdf or prefered version manager
+2) Run bundle install
+3) Run bin/setup
 
-## Requirements
+* Design and Functionality
 
-### 1. Authentication
+1) 2 test users (the Smiths) are available. Emails and passwords are in seeds.rb. Each user can only like a photo once. There is a counter_cache on Photo that displays the total likes count (for all users) for each photo.
+2) Photo Gallery uses a simple "Masonry Effect" design. When a user hovers over a photo, the Photographer, Like Button and Souce Link are displayed.
+3) Mobile-responsive layout
+4) The Clever brand color is used for link colors and the .liked class for the star-fill.svg icon.
+5) Photo like/unlike funtionality is handled by Turbo Streams. There is also a Likable concern that handles macros and instance methods to help keep the Photo model lean.
+6) Stimulus like controller implementing optimistic UI for like button
 
-- A sign-in page that gates access to the rest of the app
-- Users who are not signed in should be redirected to sign in
-- You may use any approach you prefer: `has_secure_password`, Devise, or a simple session-based system
-- No sign-up flow is needed — seed one or more users directly in `db/seeds.rb`
+* Test Suite
 
-### 2. Photo Gallery
+Basic test coverage is provided...
 
-- Display all 10 photos from the provided `photos.csv` on a single "All Photos" page
-- Seed the photos into your database from the CSV — do not read the CSV at runtime
-- Each photo card should show:
-  - The photo image (use the `src.medium` URL)
-  - The photographer's name
-  - A link icon + the photo's source URL (use `links.svg`)
-  - A like button with the current like count (use `star-fill.svg` and `star-line.svg`)
+Run all tests: bundle exec rspec
 
-### 3. Like Functionality (Hotwire)
+MODELS
 
-- Signed-in users can like and unlike any photo
-- **Likes must update without a full page reload** — use Turbo Streams or Turbo Frames
-- Like counts must persist in the database
-- Each user can like a photo only once
+photo_spec (bundle exec rspec spec/models/photo_spec.rb)
+  - incrementing/decrementing the likes count
+  - if a user has liked or not liked a photo
 
-### 4. No JavaScript Frameworks
+photo_like_spec (bundle exec rspec spec/models/photo_like_spec.rb)
+  - does a PhotoLike belong_to a user and photo
+  - is a PhotoLike unique per user and photo
 
-The interactivity must be implemented with **Hotwire** (Turbo + optionally Stimulus). Do not use React, Vue, or any other JS framework.
+REQUESTS
 
----
+user_login_logout_spec (bundle exec rspec spec/requests/user_login_logout_spec.rb)
+  - user redirects to login page after logout
+  - unauthenticated user redirects to login page if trying to access authenticated route
 
-## Bonus
+photos_controller_spec (bundle exec rspec spec/requests/photos_controller_spec.rb)
 
-- Mobile-responsive layout
-- A Stimulus controller for any client-side behavior (e.g. optimistic UI, toggling state)
-- Meaningful test coverage (RSpec or Minitest)
+  - returns a success response if user is logged and accesses photo gallery
 
----
+likes_controller_spec (bundle exec rspec spec/requests/likes_controller_spec.rb)
 
-## Assets Provided
-
-| File | Purpose |
-|------|---------|
-| `photos.csv` | Photo data — seed this into your database |
-| `logo.svg` | Clever "Ci" logo for the nav/header |
-| `links.svg` | Link icon for each photo card |
-| `star-fill.svg` | Filled star — shown when a photo is liked |
-| `star-line.svg` | Outline star — shown when a photo is not liked |
-
----
-
-## Getting Started
-
-There is no starter application. Create a new Rails app from scratch:
-
-```bash
-rails new photo-gallery --database=sqlite3
-cd photo-gallery
-```
-
-Hotwire (Turbo + Stimulus) ships with Rails 7+ by default. If you're on Rails 6, add:
-
-```ruby
-# Gemfile
-gem "hotwire-rails"
-```
-
----
-
-## What We're Looking For
-
-| Area | What to demonstrate |
-|------|-------------------|
-| **Rails conventions** | Resourceful routing, skinny controllers, proper use of models |
-| **Hotwire / Turbo** | Turbo Streams or Frames for the like feature — not polling, not custom fetch |
-| **Database design** | Appropriate models, associations, and constraints |
-| **HTML/CSS** | Clean, readable markup; reasonable styling without a heavy framework |
-| **Code quality** | Clear naming, no unnecessary complexity, code you'd be comfortable reviewing |
-
----
-
-## Time
-
-Most candidates complete the core requirements in 2–4 hours. If you run out of time, leave notes in your README describing what you'd do next rather than rushing.
-
----
-
-## Submission
-
-1. Fork this repository
-2. Build your application in the fork (the Rails app can live at the repo root or in a subdirectory)
-3. Include setup instructions in your README so we can run it locally
-4. Open a pull request back to this repository
-5. Add the following reviewers: `@imjamescrain`, `@jlien`, `@nickcluc`, `@rymccue`
-
-Questions? Reach out to nick.clucas@movewithclever.com
-
----
-
-## Design Reference
-
-The UI doesn't need to be pixel-perfect, but aim for something clean and usable. A photo card should convey the image, photographer credit, source link, and like action clearly. Use the Clever brand color `#0075EB` where appropriate.
+  - creating a new PhotoLike increments photo likes by 1
+  - destroying a new PhotoLike decrements photo likes by 1

@@ -1,0 +1,29 @@
+header.primary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  border-bottom: 1px solid #e1e1e1;
+
+  .logo,
+  .app-name {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .logo { margin-right: 5px; }
+}
+
+#content { padding: 0 30px; }
+
+@media screen and (max-width: 620px) {
+  header.primary { padding: 10px; }
+  #content { padding: 0 10px; }
+}
+
+@media screen and (max-width: 620px) {
+  header.primary {
+    .logo { max-height: 50px; }
+    .app-name { font-size: 1.25em; }
+  }
+  #content { padding: 0 10px; }
+}

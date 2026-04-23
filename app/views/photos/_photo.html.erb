@@ -1,0 +1,13 @@
+<figure class="gallery-item">
+  <%= image_tag photo.medium_url, class: "photo", alt: photo.alt %>
+  <figcaption class="overlay">
+    <span class="left">
+      <span class="photographer-name">Photographer: <%= photo.photographer_name %></span>
+    </span>
+    
+    <span class="right">
+      <%= render "photos/like_button", photo: photo %>
+      <%= render "photos/link", photo: photo %>
+    </span>
+  </figcaption>
+</figure>

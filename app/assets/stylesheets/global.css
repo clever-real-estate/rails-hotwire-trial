@@ -1,0 +1,12 @@
+:root {
+  --brand-color: #0075EB;
+  --brand-svg-user-liked-filter-color: invert(40%) sepia(93%) saturate(4619%) hue-rotate(196deg) brightness(96%) contrast(102%);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-size: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+a { color: var(--brand-color); }

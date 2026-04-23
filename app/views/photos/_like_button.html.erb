@@ -1,0 +1,14 @@
+<%= turbo_frame_tag dom_id(photo, :like) do %>
+  <%
+    method = photo.like_button_turbo_method(current_user)
+    star_svg = photo.like_button_star_svg(current_user)
+    star_svg_liked_class = photo.like_button_star_svg_liked_class(current_user)
+  %>
+  <span class="like-button-container" data-controller="like">
+    <%= button_to photos_like_path(photo_id: photo.id, format: :turbo_stream), method: method, class: "like-button", title: "Like/Unlike Photo", form: { data: { turbo_stream: true } }, data: { action: "like#toggle" } do %>
+      <%= image_tag star_svg, class: "star-icon#{star_svg_liked_class}", data: { like_target: "icon" } %>
+      <span class="likes-count"><%= photo.photo_likes_count %></span>
+    <% end %>
+  </span>
+<% end %>
+

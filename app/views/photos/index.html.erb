@@ -1,0 +1,7 @@
+<h2>All Photos</h2>
+
+<section class="gallery-container">
+  <% @photos.each do |photo| %>
+    <%= render "photo", photo: photo %>
+  <% end %>
+</section>
