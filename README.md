@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Clever's Rails + Hotwire Coding Interview
 
 Welcome to Clever's full-stack coding challenge. You'll build a small but complete web application using **Ruby on Rails** and **Hotwire** (Turbo + Stimulus). The goal is to assess how you think about Rails conventions, server-rendered interactivity, and clean UI without a heavy JavaScript framework.
@@ -113,3 +114,29 @@ Questions? Reach out to nick.clucas@movewithclever.com
 ## Design Reference
 
 The UI doesn't need to be pixel-perfect, but aim for something clean and usable. A photo card should convey the image, photographer credit, source link, and like action clearly. Use the Clever brand color `#0075EB` where appropriate.
+=======
+# README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+>>>>>>> d4d4f49 (Initial Commit)
