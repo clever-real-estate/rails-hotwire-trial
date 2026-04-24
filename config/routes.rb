@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   delete "sign_out", to: "sessions#destroy"
   
   get "/photos", to: "photos#index"
+  resources :likes, only: [:create, :destroy]
   root "photos#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
