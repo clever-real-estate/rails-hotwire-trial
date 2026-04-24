@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
+  
   def new
   end
   
@@ -9,13 +11,12 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      flash.now[:alert] = "Invalid email or password"
       render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to sessions_new_path
+    redirect_to sign_in_path
   end
 end
