@@ -1,0 +1,18 @@
+<article class="photo-card">
+  <button type="button" class="photo-open"
+          aria-label="Open photo by <%= photo.photographer %>"
+          data-action="click->modal#open"
+          data-modal-src="<%= photo.src_medium %>"
+          data-modal-alt="<%= photo.alt %>">
+    <%= image_tag photo.src_medium, alt: photo.alt, class: "photo" %>
+  </button>
+  <footer class="photo-meta">
+    <span class="photographer"><%= photo.photographer %></span>
+    <div class="photo-actions">
+      <%= link_to photo.source_url, target: "_blank", rel: "noopener", class: "source-link", "aria-label": "View source on Pexels" do %>
+        <%= image_tag "links.svg", alt: "" %>
+      <% end %>
+      <%= render "photos/like_button", photo: photo, liked: @liked_ids.include?(photo.id) %>
+    </div>
+  </footer>
+</article>
