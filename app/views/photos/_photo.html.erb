@@ -1,0 +1,32 @@
+<%= turbo_frame_tag dom_id(photo) do%>
+  <div class="photo-card">
+    <div>
+      <img src="<%= photo.image_url %>" alt="<%= photo.alt %>">
+    </div>
+    <div>
+      <p>
+        <%= photo.photographer %>
+      </p>
+      <div>
+        <a href="<%= photo.source_url %>" target="_blank" >
+          <%= image_tag "links.svg", style: "width: 16px; height: 16px;" %>
+          Pexel
+        </a>
+        <div class="photo-actions">
+          <% if photo.likes.exists?(user_id: current_user.id) %>
+            <% like = photo.likes.find_by(user_id: current_user.id) %>
+            <%= button_to photo_like_path(photo, like), method: :delete, form: { data: { turbo_frame: dom_id(photo) } } do %>
+              <%= image_tag "star-fill.svg", style: "width:18px;height:18px;" %>
+              <span><%= photo.likes_count %></span>
+            <% end %>
+          <% else %>
+            <%= button_to photo_likes_path(photo), method: :post, form: { data: { turbo_frame: dom_id(photo) } } do %>
+              <%= image_tag "star-line.svg", style: "width:18px;height:18px;" %>
+              <span><%= photo.likes_count %></span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
