@@ -1,0 +1,26 @@
+<div id="like-button-<%= photo.id %>"
+     class="like-button"
+     data-controller="like">
+
+  <% like = photo.likes.find { |l| l.user_id == current_user&.id } %>
+
+  <% if like %>
+    <%= button_to like_path(like),
+          method: :delete,
+          class: "like-btn like-btn--active",
+          aria: { label: "Unlike photo", pressed: "true" },
+          data: { action: "like#optimisticToggle", turbo_stream: true } do %>
+      <%= image_tag "star-fill.svg", class: "icon", alt: "" %>
+      <span class="like-count" data-like-target="count"><%= photo.likes.size %></span>
+    <% end %>
+  <% else %>
+    <%= button_to photo_likes_path(photo),
+          method: :post,
+          class: "like-btn",
+          aria: { label: "Like photo", pressed: "false" },
+          data: { action: "like#optimisticToggle", turbo_stream: true } do %>
+      <%= image_tag "star-line.svg", class: "icon", alt: "" %>
+      <span class="like-count" data-like-target="count"><%= photo.likes.size %></span>
+    <% end %>
+  <% end %>
+</div>

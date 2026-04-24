@@ -1,0 +1,8 @@
+<div class="gallery-header">
+  <h1 class="gallery-title">All Photos</h1>
+  <p class="gallery-count"><%= pluralize(@photos.size, "photo") %></p>
+</div>
+
+<div class="gallery-grid">
+  <%= render @photos %>
+</div>
