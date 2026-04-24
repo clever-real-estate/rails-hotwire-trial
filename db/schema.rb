@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_24_003219) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_24_020239) do
+  create_table "photos", force: :cascade do |t|
+    t.string "photographer"
+    t.string "image_url"
+    t.string "source_url"
+    t.string "alt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
