@@ -1,4 +1,5 @@
 require 'csv'
+
 Photo.delete_all
 
 CSV.foreach(Rails.root.join("photos.csv"), headers: true) do |row|
