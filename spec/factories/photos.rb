@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :photo do
-    image_url { "MyString" }
-    photographer_name { "MyString" }
-    photographer_url { "MyString" }
-    alt_text { "MyText" }
-    likes_count { 1 }
+    image_url { "https://example.com/image.jpg" }
+    source_url { "https://example.com/source" }
+    photographer_name { "A Photographer" }
+    photographer_url { "https://example.com/photographer" }
+    alt_text { "A test photo" }
   end
 end
