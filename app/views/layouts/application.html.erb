@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsHotwireTrial</title>
+    <title>CleverSnap by Vivian C.</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,9 +12,8 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-    <% end %>
+    <%= render "layouts/navigation" %>
+
     <p class="bg-green-100 text-green-800"><%= notice %></p>
     <p class="bg-red-100 text-red-800"><%= alert %></p>
     <main class="container mx-auto mt-28 px-5 flex flex-col">
