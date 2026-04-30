@@ -1,0 +1,15 @@
+<%= turbo_frame_tag dom_id(photo, :like_button) do %>
+  <% if photo.liked_by?(current_user) %>
+    <%= button_to photo_like_path(photo),
+      method: :delete do %>
+      <%= image_tag "star-fill.svg", alt: "Unlike photo", class: "w-6 h-6 cursor-pointer" %>
+      <span><%= photo.likes_count %></span>
+    <% end %>
+  <% else %>
+    <%= button_to photo_like_path(photo),
+      method: :post do %>
+      <%= image_tag "star-line.svg", alt: "Like photo", class: "w-6 h-6 cursor-pointer" %>
+      <span><%= photo.likes_count %></span>
+    <% end %>
+  <% end %>
+<% end %>
