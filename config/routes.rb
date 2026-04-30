@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "photos#index"
+
+  resources :photos, only: [:index] do
+    resource :like, only: [:create, :destroy]
+  end
 end

@@ -1,12 +1,18 @@
 <!--Credit tailwind css https://v1.tailwindcss.com/components/cards-->
 <div class="rounded overflow-hidden shadow-lg">
   <%= image_tag photo.image_url, class: "w-full h-64 object-cover", alt: photo.alt_text %>
-  <div class="px-6 py-4 flex items-center justify-between gap-2">
-    <p class="text-gray-700 text-xl truncate">
-      Credit: <%= photo.photographer_name %>
+  <div class="px-6 py-4 flex flex-col">
+    <%= render "like_button", photo: photo %>
+
+    <p class="text-gray-700 text-base my-2">
+      Photographer: <%= photo.photographer_name %>
     </p>
-    <%= link_to photo.source_url, target: "_blank", rel: "noopener" do %>
-      <%= image_tag "links.svg", alt: "View source", class: "inline-block w-4 h-4 mr-1" %>
-    <% end %>
+
+    <div class="flex items-center justify-between gap-2">
+      <%= link_to photo.source_url, target: "_blank", rel: "noopener" do %>
+        <%= image_tag "links.svg", alt: "View source", class: "inline-block w-4 h-4 mr-1" %>
+      <% end %>
+      <p class="text-xs"><%= photo.source_url %></p>
+    </div>
   </div>
 </div>
