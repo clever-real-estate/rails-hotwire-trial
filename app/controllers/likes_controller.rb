@@ -26,5 +26,4 @@ class LikesController < ApplicationController
   def set_photo
     @photo = Photo.find(params[:photo_id])
   end
-
 end
