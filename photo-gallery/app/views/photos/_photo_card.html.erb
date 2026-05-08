@@ -1,0 +1,22 @@
+<div
+  class="
+    flex flex-col bg-white rounded-lg shadow gap-4 md:h-72 xl:h-84, 2xl:h-96
+  "
+>
+  <%= image_tag(photo.image_url, class: "aspect-3/2 object-cover rounded-lg") %>
+  <div
+    class='
+      flex md:flex-col lg:flex items-center justify-between gap-2 text-sm p-4
+      lg:flex-row
+    '
+  >
+    <div class='flex flex-col gap-2'>
+      <div class='font-extrabold'><%= photo.photographer %></div>
+      <%= link_to(photo.source_url, class: "flex gap-2 align-middle hover:underline") do %>
+        <%= image_tag("links.svg", class: "w-4") %>
+        pexels.com
+      <% end %>
+    </div>
+    <%= render "like_button", photo: photo %>
+  </div>
+</div>

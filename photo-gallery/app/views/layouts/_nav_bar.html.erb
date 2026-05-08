@@ -1,0 +1,10 @@
+<div class='w-full flex justify-between items-center bg-clever-blue px-4 mb-4'>
+  <%= image_tag "logo.svg" %>
+  <span class='text-xl text-white font-extrabold'>CleverPhotoGallery</span>
+  <% if current_user %>
+    <%= button_to "Sign Out",
+    destroy_user_session_path,
+    method: :delete,
+    class: "text-white hover:underline" %>
+  <% end %>
+</div>
