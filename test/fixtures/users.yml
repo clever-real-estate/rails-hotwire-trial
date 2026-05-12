@@ -1,0 +1,9 @@
+demo:
+  email: demo@clever.example
+  name: Demo User
+  password_digest: <%= BCrypt::Password.create("password") %>
+
+other:
+  email: other@clever.example
+  name: Other User
+  password_digest: <%= BCrypt::Password.create("password") %>

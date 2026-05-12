@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clever Photo Gallery</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <%= link_to (signed_in? ? photos_path : sign_in_path), class: "brand", "aria-label": "Clever home" do %>
+        <%= render "shared/logo" %>
+        <span class="brand__text">Photos</span>
+      <% end %>
+
+      <% if signed_in? %>
+        <nav class="site-nav">
+          <span class="site-nav__user"><%= current_user.name.presence || current_user.email %></span>
+          <%= button_to "Sign out", sign_out_path, method: :delete, class: "btn btn--link", form: { data: { turbo_confirm: "Sign out?" } } %>
+        </nav>
+      <% end %>
+    </header>
+
+    <% if notice || alert %>
+      <div class="flash" role="status">
+        <% if notice %><div class="flash__notice"><%= notice %></div><% end %>
+        <% if alert  %><div class="flash__alert"><%= alert  %></div><% end %>
+      </div>
+    <% end %>
+
+    <main class="site-main">
+      <%= yield %>
+    </main>
+  </body>
+</html>
