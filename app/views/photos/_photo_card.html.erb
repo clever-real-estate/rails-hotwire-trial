@@ -1,0 +1,33 @@
+<article class="photo-card" id="<%= dom_id(photo) %>">
+  <div class="photo-card__media" style="background-color: <%= photo.avg_color %>;">
+    <img
+      src="<%= photo.src_medium %>"
+      srcset="<%= [
+        ("#{photo.src_small} 350w"  if photo.src_small.present?),
+        ("#{photo.src_medium} 940w" if photo.src_medium.present?),
+        ("#{photo.src_large} 1880w" if photo.src_large.present?)
+      ].compact.join(", ") %>"
+      sizes="(max-width: 480px) 100vw, (max-width: 1024px) 50vw, 320px"
+      alt="<%= photo.alt.presence || "Photo by #{photo.photographer}" %>"
+      loading="lazy"
+      decoding="async"
+      width="<%= photo.width %>"
+      height="<%= photo.height %>">
+  </div>
+
+  <div class="photo-card__body">
+    <div class="photo-card__meta">
+      <span class="photo-card__photographer"><%= photo.photographer %></span>
+      <%= link_to photo.url, target: "_blank", rel: "noopener noreferrer",
+                  class: "photo-card__source",
+                  "aria-label": "Open original on Pexels (opens in new tab)" do %>
+        <%= render "shared/link_icon" %>
+        <span>Source</span>
+      <% end %>
+    </div>
+
+    <%= render "photos/like_button",
+               photo: photo,
+               liked: liked_photo_ids.include?(photo.id) %>
+  </div>
+</article>

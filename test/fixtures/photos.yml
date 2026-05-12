@@ -1,0 +1,29 @@
+lake:
+  pexels_id: 21751820
+  width: 3888
+  height: 5184
+  url: https://www.pexels.com/photo/lake/
+  photographer: Felix
+  photographer_url: https://www.pexels.com/@felix
+  photographer_id: 21751820
+  avg_color: "#333831"
+  src_medium: https://images.pexels.com/photos/21751820/pexels-photo-21751820.jpeg?h=350
+  src_small: https://images.pexels.com/photos/21751820/pexels-photo-21751820.jpeg?h=130
+  src_large: https://images.pexels.com/photos/21751820/pexels-photo-21751820.jpeg?h=650
+  alt: A lake
+  likes_count: 0
+
+cyclists:
+  pexels_id: 21405575
+  width: 5284
+  height: 3514
+  url: https://www.pexels.com/photo/cyclists/
+  photographer: Centre for Ageing Better
+  photographer_url: https://www.pexels.com/@centre-for-ageing-better
+  photographer_id: 21405575
+  avg_color: "#6D755E"
+  src_medium: https://images.pexels.com/photos/21405575/pexels-photo-21405575.jpeg?h=350
+  src_small: https://images.pexels.com/photos/21405575/pexels-photo-21405575.jpeg?h=130
+  src_large: https://images.pexels.com/photos/21405575/pexels-photo-21405575.jpeg?h=650
+  alt: Two older people cycling
+  likes_count: 0

@@ -1,0 +1,19 @@
+<% content_for :title, "All Photos" %>
+
+<%= turbo_stream_from "photos" %>
+
+<header class="gallery-header">
+  <h1>All Photos</h1>
+  <p><%= pluralize(@photos.size, "photo") %></p>
+</header>
+
+<% if @photos.any? %>
+  <div class="photo-grid">
+    <%= render partial: "photos/photo_card",
+               collection: @photos,
+               as: :photo,
+               locals: { liked_photo_ids: @liked_photo_ids } %>
+  </div>
+<% else %>
+  <p class="empty-state">No photos yet. Run <code>bin/rails db:seed</code>.</p>
+<% end %>

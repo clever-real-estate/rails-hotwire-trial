@@ -1,0 +1,20 @@
+<%# Replaced via turbo_stream on like/unlike. id == dom_id(photo, :like_button). %>
+<div id="<%= dom_id(photo, :like_button) %>"
+     class="like-wrapper"
+     data-controller="optimistic-like"
+     data-optimistic-like-liked-value="<%= liked %>"
+     data-optimistic-like-count-value="<%= photo.likes_count %>">
+  <%= button_to (liked ? photo_like_path(photo) : photo_like_path(photo)),
+                method: (liked ? :delete : :post),
+                form: { class: "like-form", data: { turbo: true } },
+                class: "like",
+                aria: {
+                  pressed: liked,
+                  label: (liked ? "Unlike photo by #{photo.photographer}" : "Like photo by #{photo.photographer}")
+                } do %>
+    <span data-optimistic-like-target="icon">
+      <%= render(liked ? "shared/star_fill" : "shared/star_line") %>
+    </span>
+    <%= render "photos/like_count", photo: photo %>
+  <% end %>
+</div>

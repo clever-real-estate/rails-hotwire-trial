@@ -1,0 +1,18 @@
+<% content_for :title, "Sign in" %>
+
+<section class="auth-card">
+  <h1>Sign in</h1>
+  <p class="muted">Welcome back. Sign in to view the photo gallery.</p>
+
+  <%= form_with url: sign_in_path, method: :post, local: true do |f| %>
+    <%= label_tag :email, "Email" %>
+    <%= email_field_tag :email, params[:email], autocomplete: "email", autofocus: true, required: true %>
+
+    <%= label_tag :password, "Password" %>
+    <%= password_field_tag :password, nil, autocomplete: "current-password", required: true %>
+
+    <%= submit_tag "Sign in", class: "btn" %>
+  <% end %>
+
+  <p class="hint">Try <code>demo@clever.example</code> / <code>password</code></p>
+</section>
