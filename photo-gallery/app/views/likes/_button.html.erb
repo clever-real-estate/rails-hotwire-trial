@@ -1,0 +1,22 @@
+<% liked = photo.liked_by?(current_user) %>
+
+<div class="like-btn-wrap">
+  <% if liked %>
+    <% like = photo.likes.find_by(user: current_user) %>
+    <%= button_to photo_like_path(photo, like),
+          method: :delete,
+          class: "like-btn liked",
+          data: { turbo_frame: "like-#{photo.id}" } do %>
+      <%= image_tag "star-fill.svg", class: "icon star-icon", alt: "Unlike" %>
+      <span class="like-count"><%= photo.likes_count %></span>
+    <% end %>
+  <% else %>
+    <%= button_to photo_likes_path(photo),
+          method: :post,
+          class: "like-btn",
+          data: { turbo_frame: "like-#{photo.id}" } do %>
+      <%= image_tag "star-line.svg", class: "icon star-icon", alt: "Like" %>
+      <span class="like-count"><%= photo.likes_count %></span>
+    <% end %>
+  <% end %>
+</div>
