@@ -1,0 +1,19 @@
+<turbo-frame id="photo_<%= photo.id %>_like" class="like-button-frame">
+  <% liked = local_assigns.fetch(:liked) { current_user.liked_photos.exists?(photo.id) } %>
+  <% like_count = local_assigns.fetch(:like_count) { photo.likes.count } %>
+
+  <form method="post" action="<%= photo_likes_path(photo) %>" class="like-form" data-controller="like-button" data-action="submit->like-button#handleSubmit" data-turbo="true">
+    <%= hidden_field_tag :_method, "post" %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    <button type="submit" class="like-button <%= 'liked' if liked %>" data-liked="<%= liked %>">
+      <% if liked %>
+        <%= image_tag 'star-fill.svg', alt: 'Unlike', class: 'star-icon' %>
+      <% else %>
+        <%= image_tag 'star-line.svg', alt: 'Like', class: 'star-icon' %>
+      <% end %>
+    </button>
+
+    <span class="like-count"><%= like_count %></span>
+  </form>
+</turbo-frame>

@@ -1,0 +1,467 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* ===== Global Styles ===== */
+:root {
+  --primary-color: #0075EB;
+  --dark-gray: #333;
+  --light-gray: #f5f5f5;
+  --border-color: #ddd;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  color: var(--dark-gray);
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.brand-link img {
+  width: 32px;
+  height: 32px;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.username {
+  color: var(--dark-gray);
+  font-size: 14px;
+}
+
+/* ===== Alerts ===== */
+.alert {
+  max-width: 1200px;
+  margin: var(--spacing-md) auto;
+  padding: var(--spacing-md);
+  border-radius: 4px;
+  border-left: 4px solid;
+}
+
+.flash-notice {
+  position: fixed;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  right: var(--spacing-md);
+  z-index: 200;
+  max-width: 720px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #28a745;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+/* ===== Login Page ===== */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #003fb5 100%);
+  padding: var(--spacing-md);
+}
+
+.login-box {
+  background: white;
+  padding: var(--spacing-xl);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-box h1 {
+  color: var(--primary-color);
+  font-size: 28px;
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.subtitle {
+  color: #666;
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+  color: var(--dark-gray);
+  font-size: 14px;
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 117, 235, 0.1);
+}
+
+.form-actions {
+  margin-bottom: var(--spacing-lg);
+}
+
+.demo-credentials {
+  background-color: var(--light-gray);
+  padding: var(--spacing-md);
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.demo-credentials p {
+  margin: var(--spacing-xs) 0;
+}
+
+.demo-credentials code {
+  background-color: #fff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  color: var(--primary-color);
+}
+
+/* ===== Buttons ===== */
+.btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #0059b3;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-logout {
+  background-color: #f5f5f5;
+  color: var(--dark-gray);
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.btn-logout:hover {
+  background-color: #e0e0e0;
+}
+
+/* ===== Gallery Container ===== */
+.gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.gallery-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.gallery-header h1 {
+  color: var(--dark-gray);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.gallery-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* ===== Photo Card ===== */
+.photo-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.photo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.photo-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--light-gray);
+}
+
+.photo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-info {
+  padding: var(--spacing-md);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.photographer-name {
+  font-weight: 600;
+  color: var(--dark-gray);
+  font-size: 14px;
+  margin: 0;
+}
+
+.photo-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: auto;
+}
+
+.source-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--primary-color);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.source-link:hover {
+  background-color: var(--light-gray);
+}
+
+.source-link img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ===== Like Button ===== */
+.like-button-frame {
+  display: contents;
+}
+
+.like-form {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.like-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  color: var(--primary-color);
+}
+
+.like-button:hover {
+  background-color: var(--light-gray);
+}
+
+.like-button.liked {
+  color: #FFB800;
+}
+
+.star-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.like-count {
+  font-size: 14px;
+  color: var(--dark-gray);
+  font-weight: 500;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .navbar-content {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+
+  .navbar-user {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .login-box {
+    padding: var(--spacing-lg);
+  }
+
+  .login-box h1 {
+    font-size: 24px;
+  }
+
+  .gallery-container {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .gallery-header h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar-brand {
+    flex-direction: column;
+  }
+
+  .brand-link {
+    font-size: 16px;
+  }
+
+  .login-container {
+    min-height: auto;
+    padding: var(--spacing-lg);
+  }
+
+  .login-box {
+    padding: var(--spacing-lg);
+  }
+
+  .login-box h1 {
+    font-size: 22px;
+  }
+
+  .photo-info {
+    padding: var(--spacing-sm);
+  }
+
+  .photo-actions {
+    gap: var(--spacing-xs);
+  }
+}

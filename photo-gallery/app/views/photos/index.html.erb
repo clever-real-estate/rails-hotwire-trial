@@ -1,0 +1,30 @@
+<div class="gallery-container">
+  <div class="gallery-header">
+    <h1>All Photos</h1>
+  </div>
+
+  <div class="gallery-grid">
+    <% @photos.each do |photo| %>
+      <div class="photo-card">
+        <div class="photo-image">
+          <img src="<%= photo.src_medium %>" alt="<%= photo.alt %>">
+        </div>
+
+        <div class="photo-info">
+          <p class="photographer-name"><%= photo.photographer %></p>
+
+          <div class="photo-actions">
+            <a href="<%= photo.url %>" target="_blank" rel="noopener noreferrer" class="source-link">
+              <%= image_tag 'links.svg', alt: 'Link' %>
+            </a>
+
+            <%= render 'like_button',
+                       photo: photo,
+                       liked: @liked_photo_ids.include?(photo.id),
+                       like_count: @like_counts.fetch(photo.id, 0) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
